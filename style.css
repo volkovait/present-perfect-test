@@ -197,6 +197,42 @@ body {
   line-height: 1;
 }
 
+.algorithm-example {
+  margin: 1.5rem 0 0;
+  padding: 1rem 1.25rem;
+  font-size: 1.15rem;
+  line-height: 1.6;
+  text-align: center;
+  background: #fffef9;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+.algorithm-example-label {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.grammar-aux {
+  padding: 0.05em 0.2em;
+  border-radius: 4px;
+  font-weight: 600;
+  color: #2e5a2e;
+  background: #c8e6c9;
+}
+
+.grammar-ending {
+  padding: 0.05em 0.15em;
+  border-radius: 4px;
+  font-weight: 600;
+  color: #6b4423;
+  background: #ffe0b2;
+}
+
 @media (max-width: 720px) {
   .algorithm-flow {
     flex-direction: column;
