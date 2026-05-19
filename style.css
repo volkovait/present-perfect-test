@@ -197,40 +197,90 @@ body {
   line-height: 1;
 }
 
-.algorithm-example {
+.algorithm-examples {
   margin: 1.5rem 0 0;
   padding: 1rem 1.25rem;
-  font-size: 1.15rem;
-  line-height: 1.6;
-  text-align: center;
   background: #fffef9;
   border: 1px solid var(--border);
   border-radius: var(--radius);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
 }
 
-.algorithm-example-label {
-  display: block;
-  margin-bottom: 0.35rem;
+.algorithm-examples-heading {
+  margin: 0 0 0.85rem;
   font-size: 0.8rem;
   font-weight: 600;
   color: var(--muted);
+  text-align: center;
 }
 
-.grammar-aux {
-  padding: 0.05em 0.2em;
+.grammar-example-sentence {
+  margin: 0;
+  padding: 0.85rem 1rem;
+  font-size: 1.2rem;
+  line-height: 1.5;
+  text-align: center;
+  color: #2c2c2c;
+  background: #f5ebe0;
+  border-radius: 10px;
+}
+
+.grammar-example-sentence + .grammar-example-sentence {
+  margin-top: 0.75rem;
+}
+
+.grammar-annotated {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  vertical-align: top;
+  margin: 0 0.05em;
+}
+
+.grammar-highlight {
+  padding: 0.08em 0.28em;
   border-radius: 4px;
   font-weight: 600;
+  line-height: 1.3;
+}
+
+.grammar-highlight--aux {
   color: #2e5a2e;
   background: #c8e6c9;
 }
 
-.grammar-ending {
-  padding: 0.05em 0.15em;
-  border-radius: 4px;
-  font-weight: 600;
+.grammar-highlight--ending {
   color: #6b4423;
   background: #ffe0b2;
+}
+
+.grammar-highlight--participle {
+  color: #4a3d6b;
+  background: #e1d4f5;
+}
+
+.grammar-note {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 0.2rem;
+  max-width: 6.5rem;
+  font-size: 0.62rem;
+  line-height: 1.25;
+  font-weight: 500;
+  color: var(--muted);
+  text-align: center;
+}
+
+.grammar-note-arrow {
+  font-size: 0.85rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--accent);
+}
+
+.grammar-note-text {
+  margin-top: 0.1rem;
 }
 
 @media (max-width: 720px) {
@@ -431,14 +481,21 @@ body {
   background: #e8f0e8;
   border: 1px solid #c5d5c5;
   border-radius: 6px;
-  cursor: grab;
+  cursor: pointer;
   user-select: none;
   font-size: 0.9rem;
-  touch-action: none;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
 
-.word-chip:active {
-  cursor: grabbing;
+@media (hover: hover) and (pointer: fine) {
+  .word-chip {
+    cursor: grab;
+  }
+
+  .word-chip:active {
+    cursor: grabbing;
+  }
 }
 
 .word-chip.dragging {

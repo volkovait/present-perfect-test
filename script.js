@@ -237,18 +237,55 @@ function renderGapQuestions() {
   });
 }
 
+function getOrderExerciseZones(chip) {
+  const exercise = chip.closest('.order-exercise');
+  if (!exercise) return null;
+  return {
+    bank: exercise.querySelector('.word-bank'),
+    zone: exercise.querySelector('.order-zone'),
+  };
+}
+
+function moveChipBetweenZones(chip, targetZone) {
+  const sourceZone = chip.parentElement;
+  if (!sourceZone || sourceZone === targetZone || formSubmitted) return;
+
+  targetZone.appendChild(chip);
+  saveOrderAnswers();
+
+  if (sourceZone.classList.contains('word-bank') && sourceZone.children.length === 0) {
+    sourceZone.style.minHeight = '2.75rem';
+  }
+}
+
+function toggleChipPlacementByTap(chip) {
+  const zones = getOrderExerciseZones(chip);
+  if (!zones) return;
+
+  const parent = chip.parentElement;
+  if (parent === zones.bank) {
+    moveChipBetweenZones(chip, zones.zone);
+  } else if (parent === zones.zone) {
+    moveChipBetweenZones(chip, zones.bank);
+  }
+}
+
 function createWordChip(word, sourceZone) {
   const chip = document.createElement('span');
   chip.className = 'word-chip';
   chip.textContent = word;
   chip.draggable = true;
   chip.dataset.word = word;
+  chip.title = 'Нажмите, чтобы перенести слово';
+
+  let suppressTapAfterDrag = false;
 
   chip.addEventListener('dragstart', (event) => {
     if (formSubmitted) {
       event.preventDefault();
       return;
     }
+    suppressTapAfterDrag = true;
     chip.classList.add('dragging');
     event.dataTransfer.setData('text/plain', word);
     event.dataTransfer.setData('application/x-source-id', sourceZone.id);
@@ -258,6 +295,15 @@ function createWordChip(word, sourceZone) {
   chip.addEventListener('dragend', () => {
     chip.classList.remove('dragging');
     saveOrderAnswers();
+    window.setTimeout(() => {
+      suppressTapAfterDrag = false;
+    }, 0);
+  });
+
+  chip.addEventListener('click', (event) => {
+    if (formSubmitted || suppressTapAfterDrag) return;
+    event.preventDefault();
+    toggleChipPlacementByTap(chip);
   });
 
   return chip;
@@ -273,19 +319,13 @@ function setupDropZone(zone) {
   zone.addEventListener('drop', (event) => {
     if (formSubmitted) return;
     event.preventDefault();
-    const word = event.dataTransfer.getData('text/plain');
     const sourceId = event.dataTransfer.getData('application/x-source-id');
     const sourceZone = document.getElementById(sourceId);
     const draggingChip = document.querySelector('.word-chip.dragging');
 
     if (!draggingChip || !sourceZone) return;
 
-    zone.appendChild(draggingChip);
-    saveOrderAnswers();
-
-    if (sourceZone !== zone && sourceZone.classList.contains('word-bank') && sourceZone.children.length === 0) {
-      sourceZone.style.minHeight = '2.75rem';
-    }
+    moveChipBetweenZones(draggingChip, zone);
   });
 }
 
