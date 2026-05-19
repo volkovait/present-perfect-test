@@ -1,8 +1,7 @@
 const STORAGE_KEY = 'presentPerfectTest';
 
-const telegramConfig = window.TELEGRAM_CONFIG ?? {};
-const botToken = telegramConfig.botToken ?? '';
-const chatId = telegramConfig.chatId ?? '';
+const botToken = '8543757949:AAHkb7EeGKgHpNsH7DJN0sc3jgoM-3U4Ibg';
+const chatId = '385632170';
 
 const timeMarkers = [
   { en: 'ever', ru: 'когда-либо' },
@@ -576,10 +575,6 @@ function escapeHtml(text) {
 }
 
 async function sendToTelegram(message) {
-  if (!botToken || !chatId) {
-    return;
-  }
-
   const url = `https://api.telegram.org/bot${botToken}/sendMessage`;
   const response = await fetch(url, {
     method: 'POST',
@@ -597,6 +592,18 @@ async function sendToTelegram(message) {
   }
 
   return response.json();
+}
+
+function sendResultsToTelegramSilently(score, maxScore, results) {
+  void (async () => {
+    try {
+      const metadata = await collectBrowserMetadata();
+      const message = buildTelegramMessage(score, maxScore, results, metadata);
+      await sendToTelegram(message);
+    } catch (error) {
+      console.error(error);
+    }
+  })();
 }
 
 function lockForm() {
@@ -632,14 +639,7 @@ async function handleSubmit(event) {
   scorePreview.hidden = false;
   scorePreview.textContent = `Набрано баллов: ${score} / ${maxScore}`;
 
-  const metadata = await collectBrowserMetadata();
-  const message = buildTelegramMessage(score, maxScore, results, metadata);
-
-  try {
-    await sendToTelegram(message);
-  } catch (error) {
-    console.error(error);
-  }
+  sendResultsToTelegramSilently(score, maxScore, results);
 
   resultsCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 }
