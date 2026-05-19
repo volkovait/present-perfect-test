@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Present Perfect — тест</title>
+  <link rel="icon" href="./favicon.ico" sizes="32x32" type="image/x-icon">
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <h1>Present Perfect</h1>
+      <p class="subtitle">Знакомство и разбор</p>
+    </header>
+
+    <section class="tense-section algorithm-section" aria-labelledby="algorithm-heading">
+      <h2 id="algorithm-heading" class="algorithm-heading">Давайте разберёмся пошагово</h2>
+      <div class="algorithm-flow" role="list">
+        <div class="algorithm-step" role="listitem">
+          <div class="algorithm-card">1. Убедиться, что это Present Perfect</div>
+          <p class="algorithm-caption">Есть очевидная связь с настоящим, можно логически или реально подставить какое-то слово-указатель из перечисленных ниже</p>
+        </div>
+        <div class="algorithm-connector" aria-hidden="true"><span class="algorithm-arrow">→</span></div>
+        <div class="algorithm-step" role="listitem">
+          <div class="algorithm-card">2. Определяем have или has</div>
+          <table class="aux-table" aria-label="Соответствие подлежащего и have, has">
+            <thead>
+              <tr>
+                <th scope="col">Подлежащее</th>
+                <th scope="col">have</th>
+                <th scope="col">has</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">I / you / we / they</th>
+                <td class="aux-mark" aria-label="have">✓</td>
+                <td></td>
+              </tr>
+              <tr>
+                <th scope="row">he / she / it</th>
+                <td></td>
+                <td class="aux-mark" aria-label="has">✓</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="algorithm-connector" aria-hidden="true"><span class="algorithm-arrow">→</span></div>
+        <div class="algorithm-step" role="listitem">
+          <div class="algorithm-card">3. + , - или ?</div>
+          <p class="algorithm-caption">В вопросе переносим <em>have</em> / <em>has</em> в начало; в отрицании добавляем <em>not</em> после вспомогательного глагола</p>
+        </div>
+        <div class="algorithm-connector" aria-hidden="true"><span class="algorithm-arrow">→</span></div>
+        <div class="algorithm-step algorithm-step--spelling" role="listitem">
+          <div class="algorithm-card">4. Что делать со смысловым глаголом?</div>
+          <p class="algorithm-caption">После <em>have</em> / <em>has</em> ставим причастие прошедшего времени:</p>
+          <ul class="algorithm-spelling-list">
+            <li>правильные: <strong>-ed</strong>: <em>work → worked</em>, <em>play → played</em></li>
+            <li>глаголы на <strong>-e</strong>: только <strong>d</strong>: <em>live → lived</em></li>
+            <li>глаголы с <strong>y</strong> на конце: <strong>y → ied</strong>: <em>study → studied</em></li>
+            <li>неправильные придётся учить отдельно: <em>go → gone</em>, <em>see → seen</em>, <em>write → written</em></li>
+          </ul>
+        </div>
+        <div class="algorithm-connector" aria-hidden="true"><span class="algorithm-arrow">→</span></div>
+        <div class="algorithm-step algorithm-step--note" role="listitem">
+          <div class="algorithm-card">5.* Коварное слово&nbsp;<em>never</em></div>
+          <p class="algorithm-caption"><em>Never</em> уже отрицает действие — не ставьте рядом <em>not</em> (двойное отрицание):</p>
+          <ul class="algorithm-spelling-list">
+            <li>так нельзя: <s><em>I have not never seen…</em></s>, <s><em>She hasn't never been…</em></s></li>
+            <li>так можно: <em>I have never seen…</em>, <em>She has never been…</em></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="card markers-card">
+      <h2>Слова-указатели времени</h2>
+      <p class="section-intro">Эти слова часто сопровождают Present Perfect:</p>
+      <ul class="markers-list" id="markers-list"></ul>
+    </section>
+
+    <section class="card irregular-verbs-card">
+      <h2>Основные неправильные глаголы</h2>
+      <figure class="content-image-figure">
+        <img
+          class="content-image"
+          src="irregular-verbs.png"
+          alt="Таблица неправильных глаголов"
+          width="640"
+          height="480"
+        >
+      </figure>
+    </section>
+
+    <form id="test-form" novalidate>
+      <section class="card" id="exercise-1-section">
+        <h2>Упражнение 1</h2>
+        <p class="section-intro">
+          Раскройте скобки и впишите правильную форму глагола в Present Perfect.
+          Впишите полную форму глагола.
+        </p>
+        <ol class="questions-list" id="gap-questions"></ol>
+      </section>
+
+      <section class="card" id="exercise-2-section">
+        <h2>Упражнение 2</h2>
+        <p class="section-intro">
+          Восстановите правильный порядок слов. Перетащите слова в нужную последовательность.
+        </p>
+        <ol class="questions-list" id="order-questions"></ol>
+      </section>
+
+      <div class="actions">
+        <button type="submit" class="btn btn-primary" id="submit-btn">Завершить тест</button>
+        <p class="score-preview" id="score-preview" hidden></p>
+      </div>
+    </form>
+
+    <section class="card results-card" id="results-card" hidden>
+      <h2>Результаты</h2>
+      <p id="final-score"></p>
+    </section>
+  </div>
+
+  <script src="telegram-config.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
