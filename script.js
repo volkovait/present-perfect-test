@@ -77,10 +77,10 @@ const gapQuestions = [
   },
   {
     id: 'gap-10',
-    prompt: 'I ___ (just / lose) my keys.',
-    bracket: 'just / lose',
-    answers: ['have just lost', "'ve just lost"],
-    displayCorrect: 'have just lost',
+    prompt: 'I ___ (just / make) lunch.',
+    bracket: 'just / make',
+    answers: ['have just made', "'ve just made"],
+    displayCorrect: 'have just made',
   },
   {
     id: 'gap-11',
@@ -147,9 +147,9 @@ const orderQuestions = [
   },
   {
     id: 'order-5',
-    words: ['just', 'has', 'He', 'lost', 'the', 'keys', '.'],
-    correct: ['He', 'has', 'just', 'lost', 'the', 'keys', '.'],
-    displayCorrect: 'He has just lost the keys.',
+    words: ['just', 'have', 'I', 'made', 'lunch', '.'],
+    correct: ['I', 'have', 'just', 'made', 'lunch', '.'],
+    displayCorrect: 'I have just made lunch.',
   },
 ];
 
